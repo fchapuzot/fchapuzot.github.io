@@ -97,6 +97,26 @@ These inputs can only be defined in topology YAML editor.</p>
 
 <p><img src="../../images/3.4.0/user_guide/custom_workflow_inputs.png" alt="Custom workflow view" /></p>
 
+<h1 id="resume-failed-workflows">Resume failed workflows</h1>
+
+<p>With A4C 3.4.0 next release, with Yorc 4.2.0, it will be possible to resubmit a workflow on erreur from the failed steps.
+In the full UI, a <strong>Resume</strong> is displayed when a workflow fails :</p>
+
+<p><img src="../../images/3.4.0/user_guide/resubmit_workflow_1.png" alt="Info view 1 " /></p>
+
+<p>For instance, this deployment workflow fails on error step, <strong>start</strong> step</p>
+
+<p><img src="../../images/3.4.0/user_guide/resubmit_workflow_2.png" alt="Info view 2 " /></p>
+
+<p>When clicking <strong>Resume</strong> button workflow will be resubmit from the failed step, <strong>start</strong> as we can see in the Execution view :</p>
+
+<p><img src="../../images/3.4.0/user_guide/resubmit_workflow_3.png" alt="Info view 3 " /></p>
+
+<div class="note info">
+<p>This feature is only available on specific snapshots of Alien4Cloud and Yorc.
+For alien4cloud, the branch features/ALIEN-3705-wf-resume for the reposiorries <a href="https://github.com/alien4cloud/alien4cloud/tree/features/ALIEN-3705-wf-resume">alien4cloud</a>  and <a href="https://github.com/alien4cloud/alien4cloud-yorc-provider/tree/features/ALIEN-3705-wf-resume">Yorc plugin provider</a></p>
+</div>
+
 <h1 id="scaling">Scaling</h1>
 
 <p><strong><em>TODO</em></strong> how to scale</p>
