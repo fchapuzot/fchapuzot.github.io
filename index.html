@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>ALIEN 4 Cloud</title>
+    <meta property="st:info" content="section:''"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/toc-nav.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <link rel="stylesheet" href="../css/note.css">
+    <link rel="stylesheet" href="../css/timeline.css">
+</head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8" src="../js/search.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.ba-hashchange.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/sidebar.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.gist.js"></script>
+
+
+<script id="search-results-template" type="text/mustache">
+{{#entries}}
+<div><a href="#{{url}}">{{title}}</a></div>
+{{/entries}}
+</script>
+
+
+<script type="text/javascript">
+var lunrIndexLoaded = false;
+function loadLunrIndex() {
+  if(lunrIndexLoaded) {
+    var searchResult = document.getElementById('search-results');
+    searchResult.style.visibility = 'visible';
+    searchResult.style.display = 'none';
+    document.getElementById('search-query').value='';
+    return;
+  }
+  console.log("loading index...");
+  $('#search-query').lunrSearch({
+    indexUrl: '/search.json',
+    results:  '#search-results',
+    entries:  '.entries',
+    template: '#search-results-template'
+  });
+  console.log("loaded");
+  lunrIndexLoaded = true;
+}
+
+function hideSearchResults() {
+  document.getElementById('search-results').style.visibility = 'hidden';
+}
+</script>
+
+    <div id="wrapper">
+    	<div id="header">
+    	   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/index.html">
+      <img src="/images/cloudalien-small.png" style="height:21px;" class="pull-left"> Alien 4 Cloud
+    </a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <!-- <li>
+        <a href="/community/index.html">Community</a>
+      </li> -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docs <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="#/documentation/3.4.0/index.html">3.4.0 (developement version) </a>
+          </li>           
+          <li>        
+          <li>
+            <a href="#/documentation/3.3.0/index.html">3.3.0</a>
+          </li>           
+          <li>
+            <a href="#/documentation/3.2.0/index.html">3.2.0</a>
+          </li>        
+          <li>
+            <a href="#/documentation/3.1.0/index.html">3.1.0</a>
+          </li>         
+          <li>
+            <a href="#/documentation/3.0.0/index.html">3.0.0</a>
+          </li>        
+          <li>
+            <a href="#/documentation/2.2.0/index.html">2.2.0</a>
+          </li>
+          <li>
+            <a href="#/documentation/2.1.0/index.html">2.1.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/2.0.0/index.html">2.0.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/1.4.0/index.html">1.4.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/1.3.0/index.html">1.3.0 - Deprecated</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/release_notes/index.html">Release notes</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/migration_guides/index.html">Migration Guides</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/developer_guide/index.html">Contribution guide</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/common/features.html">Features</a>
+      </li>
+      <li>
+        <a href="/roadmap/index.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="/common/download.html">Download</a>
+      </li>
+      <li>
+        <a id="git-icon" href="https://github.com/alien4cloud/alien4cloud.github.io" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Documentation's GitHub!" data-original-title="Documentation's GitHub!">
+        <i class="fa fa-code-fork fa-lg fa-rotate-90"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div id="search">
+          <form class="navbar-form navbar-right" action="#" method="get" role="search">
+            <div class="form-group">
+              <input class="form-control" type="text" id="search-query" name="q" placeholder="Search" autocomplete="off" onfocus="loadLunrIndex()" onblur="hideSearchResults()">
+            </div>
+          </form>
+          <section id="search-results" class="search-results-section" style="display: none;" onmousedown="event.preventDefault();">
+            <div class="entries">
+            </div>
+          </section>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+$('[target=_blank]').append(" <i class=\"icon-external-link\" style=\"font-size:10px\"></i>");
+$('#git-icon').tooltip();
+</script>
+
+    	</div>
+    	<div id="content-parent" class="content">
+    	   <div class="home-video">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="slogan-title">
+          Alien4Cloud<br /><br />
+          <small>is an <a href="http://github.com/alien4cloud">open source</a> platform<br /> that makes application management on the cloud easy for enterprises<br /><br /></small>
+        </p>
+        <p class="home-buttons">
+          <a href="#/documentation/3.0.0/getting_started/new_getting_started.html" class="btn btn-primary btn-lg">Get Started</a>
+          <a href="/common/download.html" class="btn btn-success btn-lg">Download</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container hidden-sm hidden-xs">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/one_click.svg" />
+      Single click deploy to any target
+    </div>
+    <div class="col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/self_service.svg" />
+      Easy self-service consumption
+    </div>
+    <div class="col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/mangeable_it.svg" />
+      Manageable IT infrastructure, private or public, at any scale
+    </div>
+    <div class="col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/open_extensible.svg" />
+      Open and extensible
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/manage_your_deployment.svg" />
+      Manage your deployments
+    </div>
+    <div class="col-md-4 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/dev_friendly.svg" />
+      Dev friendly
+    </div>
+     <div class="col-md-3 text-center">
+      <img width="100px" style="margin-left: auto; margin-right: auto;" src="/svg/spread_knowlegde.svg" />
+      Spread knowledge and best-practices
+    </div>
+  </div>
+
+  <p class="home-caret"><i class="fa fa-2x fa-caret-down" aria-hidden="true"></i></p>
+</div>
+
+<div class="container homepage">
+  <h2>What can a4c do for you</h2>
+</div>
+
+<div class="home-line odd">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/one_click.svg" />
+      </div>
+       <div class="col-md-7">
+        <p class="lead home-title">
+          Single click deploy to any target
+        </p>
+        <p class="lead">
+          <small>Advanced matching engine allows you to deploy your portable topology to any target! Without any modification just choose to deploy to AWS, Azure, OpenStack, your physical machines etc. Have a docker based application ? Deploy your docker applications seamlessly on Marathon or Kubernetes etc.</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-7">
+        <p class="lead home-title">
+          Easy self-service consumption
+        </p>
+        <p class="lead">
+          <small>Allow your teams to access IT resources straightaway with a fine rights management.<br />
+    Design portable topologies/blueprints using a simple drag &amp; drop editor. Share your topologies with other users in the system, manage your applications topologies.</small>
+        </p>
+      </div>
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/self_service.svg" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line odd">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/mangeable_it.svg" />
+      </div>
+      <div class="col-md-7">
+        <p class="lead home-title">
+          Manageable IT infrastructure, private or public, at any scale
+        </p>
+        <p class="lead">
+          <small>Provide self-service on pre-configured infrastructure resources (cloud, bare metal, already running services) with a comprehensive system of rights and resources access management.</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-7">
+        <p class="lead home-title">
+          Open and extensible
+        </p>
+        <p class="lead">
+          <small>Add your own devops components, add support for your own custom cloud, leverage any API.<br />
+          Integrate with any of your favorite tools.<br />
+          Extend alien4cloud UI or rest services to add or even override existing screens.
+          </small>
+        </p>
+      </div>
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/open_extensible.svg" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/manage_your_deployment.svg" />
+      </div>
+      <div class="col-md-7">
+        <p class="lead home-title">
+          Manage your deployments
+        </p>
+        <p class="lead">
+          <small>Deploy your application on the selected cloud using our single click deploy feature, upgrade existing deployments and get immediate feedback on the deployment process.</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line odd">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <p class="lead home-title">
+          Dev friendly
+        </p>
+        <p class="lead">
+          <small>
+    Comprehensive versions and environments management allows you to build your continuous delivery lifecycle including any complex deployment requirements. Run easily your workloads on any versions including integration testing and load testing.
+    Our full-packaged model including from the infrastructure element to the application allow you to easily recreate any of your version environment to reproduce bugs.<br />
+    Command line addict ? You can interact with A4C using rest API and simple curl Requests.<br />
+    </small>
+        </p>
+      </div>
+      <div class="col-md-4 col-md-offset-1 hidden-sm hidden-xs">
+        <img src="/svg/dev_friendly.svg" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-line">
+  <div class="container home-section">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2 hidden-sm hidden-xs">
+        <img src="/svg/spread_knowlegde.svg" />
+      </div>
+      <div class="col-md-6">
+        <p class="lead home-title">
+          Spread knowledge and best-practices
+        </p>
+        <p class="lead">
+          <small>Package your DevOps IT artifacts in reusable TOSCA components and make them available to other in a self-service catalog. Expose your existing artifacts, from Docker containers to classical Shell, Ansible, Batch, Chef, Puppet in a composable and reusable way for non-expert consumers etc.</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="videos">
+  <div class="container home-section homepage">
+    <h2>Videos</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="lead home-title">Success story</p>
+        <p class="lead" style="margin-top:-25px"><small>Société générale reduced by 66% its time to market.<br />
+Deployment times in minutes<br />
+Close to zero incident rate on deployment<br />
+Application and environments 100% synced (deployment model always up to date)<br />
+        </small></p>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lCTy2lvHWTw " frameborder="0" allowfullscreen=""></iframe>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <p class="lead home-title">Use case</p>
+        <p class="lead" style="margin-top:-25px"><small>Kubernetes use case</small></p>
+        <div class="home-usecase-video embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/432Yoc4kIMg" frameborder="0" allowfullscreen=""></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact">
+  <div class="container home-section homepage">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p class="lead home-title">Need more information?</p>
+        <a href="mailto:alien4cloud@gmail.com" class="btn btn-primary btn-lg">Get in touch</a>
+    </div>
+  </div>
+</div>
+</div>
+
+    	</div>
+      <div class="push"></div>
+	  </div>
+    <div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-m-footer-group col-sm-3">
+		        	<h5>About us</h5>
+		          	<ul>
+		          		<li><a data-category="Footer" href="http://atos.net">Atos</a></li>
+		          		<li><a data-category="Footer" href="mailto:alien4cloud@gmail.com">Contact us</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Partners</h5>
+		          	<ul>
+									<li><a data-category="Footer" href="https://www.oasis-open.org">OASIS</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Resources</h5>
+		          	<ul>
+                  <li><a data-category="Footer" href="https://github.com/alien4cloud/alien4cloud.github.io">GitHub</a></li>
+		          		<li><a data-category="Footer" href="#/documentation/index.html">Documentation</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Social networks</h5>
+		          	<ul>
+		          		<li><a data-category="Footer" href="https://www.youtube.com/channel/UCfckmknFOcHrQ5pvdDyJGGg">Youtube</a></li>
+		          	</ul>
+		        </div>
+		    </div>
+		</div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="credit"><a href="http://jekyllrb.com/">Powered by Jekyll</a>.<br/>
+				<a href="https://www.iconfinder.com/coloripop">Homepage icons are based on Elizabeth Arostegui's work</a></p>
+      </div>
+    </div>
+	</div>
+</div>
+
+  </body>
+</html>

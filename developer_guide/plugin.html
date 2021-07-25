@@ -1,0 +1,176 @@
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-73216650-1', 'auto');
+ga('set', {
+  page: '/developer_guide/plugin.html',
+  title: 'Plugins'
+});
+ga('send', 'pageview');
+
+</script>
+
+<div class="container-fluid">
+  <div class="row">
+    
+      <div class="col-sm-4 col-md-3">
+        <div id="sidebar_menu" class="tree" role="complementary"></div>
+      </div>
+      <div id="content" class="col-sm-8 col-md-9">
+    
+        <div style="height: 50px;">
+          <h1 class="pull-left" style="margin-top: 0px;">Plugins</h1>
+          <a class="btn btn-primary pull-right" href="http://prose.io/#alien4cloud/alien4cloud.github.io/edit/sources/developer_guide/plugin.markdown"><i class="fa fa-pencil-square-o"></i> Edit (pull request)</a>
+        </div>
+        <p>Alien 4 Cloud allows developer to extends the application by adding plugins. A plugin may contains some java services, some REST controllers and UI elements. The most common plugins that we ship with alien4cloud are orchestrator plugins.</p>
+
+<h2 id="plugin-archive">Plugin archive</h2>
+
+<p>ALIEN plugins are package as a zip archive that must contains the following hierarchy:</p>
+
+<ul>
+  <li>The <strong>root</strong> of the zip file may contain java classes and resources (basically it will be added to the plugin’s classpath).</li>
+  <li>The <strong>lib</strong> folder (optional) must contain all java archives (jar) required for the plugin to run. They will be added to the plugin classloader. Of course you should not add ALIEN 4 cloud jars here as they will be loaded through the plugin parent classloader.</li>
+  <li><strong>META-INF/plugin.yml</strong> contains the plugin description and entry point informations (the plugin descriptor).</li>
+  <li>The <strong>ui</strong> folder contains all ui elements including javascript files, css html and any other static files.</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">├── javapackage
+│   ├── MyClass.class
+│   └── ...
+├── lib
+│   └── library.jar
+├── META-INF
+│   └── plugin.yml
+├── ui
+│   └── scripts
+│   │   └── plugin.js
+│   │   views
+│   │   └── view.html</code></pre></div>
+
+<h2 id="the-plugin-descriptor">The plugin descriptor</h2>
+
+<p>The plugin descriptor (META-INF/plugin.yml) is mandatory and is the entry point of the plugin for ALIEN. As many other configuration elements it is a YAML file that allows to describe your plugin.</p>
+
+<h3 id="grammar">grammar</h3>
+
+<p>As detailed in the architecture section, a ALIEN plugin is actually a Spring sub-context; As so it requires a Spring context configuration entry point. For ALIEN plugins we have decided to allow only java based configuration and thus a plugin must specify a configuration class in it’s descriptor.
+The configuration class is the only mandatory class in a plugin so it can be loaded by ALIEN.</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th style="text-align: left">Keyname</th>
+      <th style="text-align: left">Type</th>
+      <th style="text-align: left">Required</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">id</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">yes</td>
+      <td style="text-align: left">Identifier of the plugin. Must be unique within alien4cloud.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">name</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">yes</td>
+      <td style="text-align: left">The name of the plugin as it will be displayed to user.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">version</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">yes</td>
+      <td style="text-align: left">The version of the plugin.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">description</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">no</td>
+      <td style="text-align: left">The optional description of the plugin.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">configuration_class</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">yes</td>
+      <td style="text-align: left">The name of the java class to load as Spring context configuration (see Plugin context entry point).</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ui_entry_point</td>
+      <td style="text-align: left">string</td>
+      <td style="text-align: left">no</td>
+      <td style="text-align: left">Path of the javascript file of your ui plugin that should be loaded as entry point. The path must be relative to the ui folder. More details in the ui plugin section.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">component_descriptors</td>
+      <td style="text-align: left">list of component_descriptor</td>
+      <td style="text-align: left">no</td>
+      <td style="text-align: left">Optional list of beans that you wan’t to expose from your plugin so they will be available to other plugins. To be honest such usage is currently not really useful as we cannot yet specify loading priority or dependencies for plugins.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example">example</h3>
+
+<div data-gist="https://gist.github.com/lucboutier/5fa28bbc876303b4c8c2.js"></div>
+
+<h2 id="plugin-context-entry-point">Plugin context entry point</h2>
+
+<p>As described higher, a plugin in ALIEN is a spring context that inherits from ALIEN context. This allows you to build plugin that have full access to the repository or any other component in ALIEN.</p>
+
+<p>When loading a plugin, ALIEN for cloud will create the spring context based on the spring java configuration class defined in the plugin descriptor. It will then lookup the spring context for plugin beans matching one of a supported plugin type (like a bean that implements IPaaSProvider for example).</p>
+
+<p>Below is an example of a plugin spring context java configuration that acts as an entry point for the cloudify plugin.</p>
+
+<div data-gist="https://gist.github.com/lucboutier/6b79c8cabecf6546b138.js"></div>
+
+<div class="note info">
+<p>Even ‘pure’ ui plugins must have a java/spring entry point.</p>
+</div>
+
+<h2 id="plugin-configuration">Plugin configuration</h2>
+
+<p>ALIEN provides an easy way to configure a plugin by generating the UI based on a configuration object using introspection. It also manages persistency of the configuration.</p>
+
+<p>In order to enable plugin configuration, one of the bean in your spring context must implements the _IPluginConfigurator<t>_ interface. This interface (see signature below) allow to provide a POJO that will act as the configuration object for the whole plugin.</t></p>
+
+<div data-gist="https://gist.github.com/lucboutier/134921b861cf8b0fd44a.js"></div>
+
+<div class="note warning">
+<p>Current version of ALIEN 4 Cloud does not supports more than a single configuration. Thus you should make sure that a single IPluginConfigurator exists in your plugin spring context.</p>
+</div>
+
+<h2 id="getting-started-with-plugin-development">Getting started with plugin development</h2>
+
+<p>The easiest way to get started with plugin development is to clone and copy the <a href="https://github.com/alien4cloud/alien4cloud-plugin-sample">alien4cloud-plugin-sample</a> from github.</p>
+
+        <a class="btn btn-primary pull-right" href="http://prose.io/#alien4cloud/alien4cloud.github.io/edit/sources/developer_guide/plugin.markdown"><i class="fa fa-pencil-square-o"></i> Edit (pull request)</a>
+	  </div>
+    </div>
+  </div>
+</div><!-- /container -->
+
+<script>
+var hash = location.hash.replace( /^#/, '' );
+if(hash && hash!== null && hash.match(/html$/)) {
+} else {
+  var newLocation = location.protocol+"//"+location.host+"#"+location.pathname;
+  location.replace(newLocation);
+}
+</script>
+<script type="text/javascript" src="/js/post-layout.js"></script>
+<script>
+$(document).ready(function () {
+  makeSideBar('DEVELOPER_GUIDE', 'developer_guide/plugin.markdown');
+});
+</script>
+
+<script>
+$("div[data-gist]").gist();
+</script>

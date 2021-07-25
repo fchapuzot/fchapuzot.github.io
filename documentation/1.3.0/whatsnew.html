@@ -1,0 +1,125 @@
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-73216650-1', 'auto');
+ga('set', {
+  page: '/documentation/1.3.0/whatsnew.html',
+  title: 'New in 1.3.0'
+});
+ga('send', 'pageview');
+
+</script>
+
+<div class="container-fluid">
+  <div class="row">
+    
+      <div class="col-sm-4 col-md-3">
+        <div id="sidebar_menu" class="tree" role="complementary"></div>
+      </div>
+      <div id="content" class="col-sm-8 col-md-9">
+    
+        <div style="height: 50px;">
+          <h1 class="pull-left" style="margin-top: 0px;">New in 1.3.0</h1>
+          <a class="btn btn-primary pull-right" href="http://prose.io/#alien4cloud/alien4cloud.github.io/edit/sources/documentation/1.3.0/whatsnew.md"><i class="fa fa-pencil-square-o"></i> Edit (pull request)</a>
+        </div>
+        
+<hr style="margin-top:5px; margin-bottom:5px;" />
+<div class="row"><ul class="nav nav-pills" id="summarypanel"></ul></div>
+<hr style="margin-top:5px; margin-bottom:5px;" />
+
+<h1 id="tosca-editor">TOSCA editor</h1>
+
+<p>Alien 4 Cloud 1.3.0 introduce a brand new version of the editor that now allows to edit a full archive, including topology yaml, scripts and any other files while still providing the topology and workflow edition views.</p>
+
+<p>The core of the editor has been rewritten to allow support for undo/redo and user-triggered save (rather than automatic save on every operation) allowing to update the topology only when your changes are consistent.</p>
+
+<p>To ease usage we now includes basic keyboard shortcuts in the editor and plan to improve their support with new ones. If you have a wish-list join our slack and share with us and the community!</p>
+
+<p>The editor is now fully integrated with git, providing a local history through commits (performed automatically on a save) and allowing to push and/or pull from a remote repository.</p>
+
+<p><a href="#/documentation/1.3.0/user_guide/topology_editor.html">Read more here&#8230;</a></p>
+
+<h1 id="workspaces">Workspaces</h1>
+
+<p>TOSCA archives are now uploaded within workspaces. OpenSource support allow better isolation of application workspace. Premium support includes user workspaces and promotion mechanisms to allow archive sharing.</p>
+
+<p><a href="#/documentation/1.3.0/user_guide/catalog_workspaces.html">Read more here&#8230;</a></p>
+
+<h1 id="tosca-conformance-improvements">TOSCA conformance improvements</h1>
+
+<h2 id="complex-inputs">Complex inputs</h2>
+
+<p>Alien 4 Cloud now supports complex data types (including lists and maps) for topology inputs. Remember that you can access your complex properties using the get_property input in TOSCA</p>
+
+<p><a href="#/documentation/1.3.0/devops_guide/tosca_grammar/get_property_definition.html">Read more here&#8230;</a></p>
+
+<h2 id="repositories-support">Repositories support</h2>
+
+<p>Alien 4 Cloud now support artifact repositories definition and parsing. See more in <em>Artifact repositories support</em> section below.</p>
+
+<h1 id="artifact-repositories-support">Artifact repositories support</h1>
+
+<p>Ability to define artifact repositories to override url and credential based on artifact id (usefull when behind proxy).</p>
+
+<p>Support of various repository types:</p>
+
+<ul>
+  <li>Http</li>
+  <li>Maven/Nexus (<strong><em><code>Premium</code></em></strong>)</li>
+  <li>Git (<strong><em><code>Premium</code></em></strong>)</li>
+</ul>
+
+<p><a href="#/documentation/1.3.0/user_guide/catalog_artifact_repositories.html">Read more here&#8230;</a></p>
+
+<h1 id="api-improvements">API improvements</h1>
+
+<p>Support for single call topology update or git pull making it easy to update your topology before deployment.</p>
+
+<h1 id="alien4cloud-high-availability---premium">Alien4Cloud High Availability - Premium</h1>
+
+<p>HA support allowing a 24/7 availability of Alien4Cloud, using a primary / backup system.</p>
+
+<p><a href="#/documentation/1.3.0/admin_guide/ha.html">Read more here&#8230;</a></p>
+
+<h1 id="cloudify-34-support">Cloudify 3.4 support</h1>
+
+<p>Alien4Cloud 1.3 officially supports cloudify 3.4 that bring support for scalability groups. We now removed our custom OpenStack plugin that worked-around scalability issues in cloudify 3 to leverage scalability groups.</p>
+
+<p>As Scalability Groups have limitations for block storage scalability we include custom wrappers that enable full Block Storage scalability and all that fully transparent for the user!</p>
+
+<p><a href="#/documentation/1.3.0/orchestrators/cloudify3_driver/index.html">Read more here&#8230;</a></p>
+
+<h1 id="docker-support">Docker support</h1>
+
+<p>Support for docker deployment using our <strong>Marathon plugin (beta state)</strong> and experimental support for Kubernetes through cloudify</p>
+
+<p><a href="#/documentation/1.3.0/orchestrators/marathon_driver/marathon_driver.html">Read more here&#8230;</a></p>
+
+        <a class="btn btn-primary pull-right" href="http://prose.io/#alien4cloud/alien4cloud.github.io/edit/sources/documentation/1.3.0/whatsnew.md"><i class="fa fa-pencil-square-o"></i> Edit (pull request)</a>
+	  </div>
+    </div>
+  </div>
+</div><!-- /container -->
+
+<script>
+var hash = location.hash.replace( /^#/, '' );
+if(hash && hash!== null && hash.match(/html$/)) {
+} else {
+  var newLocation = location.protocol+"//"+location.host+"#"+location.pathname;
+  location.replace(newLocation);
+}
+</script>
+<script type="text/javascript" src="/js/post-layout.js"></script>
+<script>
+$(document).ready(function () {
+  makeSideBar('DOCUMENTATION-1.3.0', 'documentation/1.3.0/whatsnew.md');
+});
+</script>
+
+<script>
+$("div[data-gist]").gist();
+</script>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>ALIEN 4 Cloud</title>
+    <meta property="st:info" content="section:''"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/docs.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/toc-nav.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <link rel="stylesheet" href="../css/note.css">
+    <link rel="stylesheet" href="../css/timeline.css">
+</head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8" src="../js/search.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.ba-hashchange.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/sidebar.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.gist.js"></script>
+
+
+<script id="search-results-template" type="text/mustache">
+{{#entries}}
+<div><a href="#{{url}}">{{title}}</a></div>
+{{/entries}}
+</script>
+
+
+<script type="text/javascript">
+var lunrIndexLoaded = false;
+function loadLunrIndex() {
+  if(lunrIndexLoaded) {
+    var searchResult = document.getElementById('search-results');
+    searchResult.style.visibility = 'visible';
+    searchResult.style.display = 'none';
+    document.getElementById('search-query').value='';
+    return;
+  }
+  console.log("loading index...");
+  $('#search-query').lunrSearch({
+    indexUrl: '/search.json',
+    results:  '#search-results',
+    entries:  '.entries',
+    template: '#search-results-template'
+  });
+  console.log("loaded");
+  lunrIndexLoaded = true;
+}
+
+function hideSearchResults() {
+  document.getElementById('search-results').style.visibility = 'hidden';
+}
+</script>
+
+    <div id="wrapper">
+    	<div id="header">
+    	   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/index.html">
+      <img src="/images/cloudalien-small.png" style="height:21px;" class="pull-left"> Alien 4 Cloud
+    </a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <!-- <li>
+        <a href="/community/index.html">Community</a>
+      </li> -->
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docs <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="#/documentation/3.4.0/index.html">3.4.0 (developement version) </a>
+          </li>           
+          <li>        
+          <li>
+            <a href="#/documentation/3.3.0/index.html">3.3.0</a>
+          </li>           
+          <li>
+            <a href="#/documentation/3.2.0/index.html">3.2.0</a>
+          </li>        
+          <li>
+            <a href="#/documentation/3.1.0/index.html">3.1.0</a>
+          </li>         
+          <li>
+            <a href="#/documentation/3.0.0/index.html">3.0.0</a>
+          </li>        
+          <li>
+            <a href="#/documentation/2.2.0/index.html">2.2.0</a>
+          </li>
+          <li>
+            <a href="#/documentation/2.1.0/index.html">2.1.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/2.0.0/index.html">2.0.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/1.4.0/index.html">1.4.0 - Deprecated</a>
+          </li>
+          <li>
+            <a href="#/documentation/1.3.0/index.html">1.3.0 - Deprecated</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/release_notes/index.html">Release notes</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/migration_guides/index.html">Migration Guides</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a href="#/developer_guide/index.html">Contribution guide</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/common/features.html">Features</a>
+      </li>
+      <li>
+        <a href="/roadmap/index.html">Roadmap</a>
+      </li>
+      <li>
+        <a href="/common/download.html">Download</a>
+      </li>
+      <li>
+        <a id="git-icon" href="https://github.com/alien4cloud/alien4cloud.github.io" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Documentation's GitHub!" data-original-title="Documentation's GitHub!">
+        <i class="fa fa-code-fork fa-lg fa-rotate-90"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div id="search">
+          <form class="navbar-form navbar-right" action="#" method="get" role="search">
+            <div class="form-group">
+              <input class="form-control" type="text" id="search-query" name="q" placeholder="Search" autocomplete="off" onfocus="loadLunrIndex()" onblur="hideSearchResults()">
+            </div>
+          </form>
+          <section id="search-results" class="search-results-section" style="display: none;" onmousedown="event.preventDefault();">
+            <div class="entries">
+            </div>
+          </section>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+$('[target=_blank]').append(" <i class=\"icon-external-link\" style=\"font-size:10px\"></i>");
+$('#git-icon').tooltip();
+</script>
+
+    	</div>
+    	<div id="content-parent" class="content">
+    	   <div class="container">
+  <p>Alien4Cloud is OpenSource and you can download from the download link in the navbar!</p>
+  <p>You can also contact us to benefit from the custom services with great features and support for your enterprise such as the features that are not refered as opensource in this list</p>
+  <table class="table table-striped table-centered">
+    <thead>
+      <tr class="features-head">
+        <th></th>
+        <th style="text-align: center;">Open source</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="features-title">
+        <td colspan="2">SELF-SERVICE</td>
+      </tr>
+      <tr>
+        <td>Role based portal & Self-service deployment</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Release pipeline / Versions, environments management</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>
+          Customization:
+          <ul>
+            <li>Open Source implementation (Algorithms/UI)</li>
+            <li>Integration with Dev/Ops systems (REST API)</li>
+          </ul>
+        </td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Metrics & Analytics: Infrastructure Resources Dashboards, Audit Trails</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr class="features-title">
+        <td colspan="2">DESIGN APPLICATIONS (BUILD)</td>
+      </tr>
+      <tr>
+        <td>Application Portability & Reusability using Tosca Standard<br>
+        Tosca support: Simple profile in YAML v1.0 / alien 4 cloud 2.0 DSL</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Components and blueprints Catalog (Drag & Drop, Git Archive import)</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Users and applications workspaces</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Full featured blueprint designer: Drag & drop, Custom Workflow, Advanced Git Integration</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Artifact repositories management (Http, Maven, Git)</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Infrastructure targets and resources management</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Portability insights at the topology & component level</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr class="features-title">
+        <td colspan="2">DEPLOY & MANAGE (RUN)</td>
+      </tr>
+      <tr>
+        <td>IaaS resources matching</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Reuse your existing artifacts: Shell, Chef, Puppet, Ansible...</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Interface with any deployment platform, orchestrators, custom</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>- Display deployment information from underlying orchestrator</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Yorc latest versions compatibiliy</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Deployment on any IaaS: Virtual, Physical, private, public or Hybrid</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>- Amazon (AWS)</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>- OpenStack</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Runtime view (while deploying or running)</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Runtime Policies: High availability and Scalability</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr class="features-title">
+        <td colspan="2">UPGRADES</td>
+      </tr>
+      <tr>
+        <td>Patch & Post deployment execution</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Alien migration tools</td>
+        <td style="text-align: center;"><a href="/community/index.html">contact us</a></td>
+      </tr>
+      <tr class="features-title">
+        <td colspan="2">SECURITY & NFR</td>
+      </tr>
+      <tr>
+        <td>Authentication, LDAP Integration</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Manage SSH Keys</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Associate existing Security Groups to Compute</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>SAML integration</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Alien4Cloud High Availability</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr class="features-title">
+        <td colspan="2">SUPPORT</td>
+      </tr>
+      <tr>
+        <td>Online Documentation, product updates</td>
+        <td style="text-align: center;"><i class="text-success fa fa-check fa-2x"></i></td>
+      </tr>
+      <tr>
+        <td>Response SLA time, Support Portal & knowledge Base,
+        Direct access to core developers, Hot patches, fixes</td>
+        <td style="text-align: center;"><a href="/community/index.html">contact us</a></td>
+      </tr>
+      <tr>
+        <td>Updates and new premium features,
+        Indemnification, Priority on new features development</td>
+        <td style="text-align: center;"><a href="/community/index.html">contact us</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    	</div>
+      <div class="push"></div>
+	  </div>
+    <div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-m-footer-group col-sm-3">
+		        	<h5>About us</h5>
+		          	<ul>
+		          		<li><a data-category="Footer" href="http://atos.net">Atos</a></li>
+		          		<li><a data-category="Footer" href="mailto:alien4cloud@gmail.com">Contact us</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Partners</h5>
+		          	<ul>
+									<li><a data-category="Footer" href="https://www.oasis-open.org">OASIS</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Resources</h5>
+		          	<ul>
+                  <li><a data-category="Footer" href="https://github.com/alien4cloud/alien4cloud.github.io">GitHub</a></li>
+		          		<li><a data-category="Footer" href="#/documentation/index.html">Documentation</a></li>
+		          	</ul>
+		        </div>
+		        <div class="col-m-footer-group col-sm-3">
+		        	<h5>Social networks</h5>
+		          	<ul>
+		          		<li><a data-category="Footer" href="https://www.youtube.com/channel/UCfckmknFOcHrQ5pvdDyJGGg">Youtube</a></li>
+		          	</ul>
+		        </div>
+		    </div>
+		</div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="credit"><a href="http://jekyllrb.com/">Powered by Jekyll</a>.<br/>
+				<a href="https://www.iconfinder.com/coloripop">Homepage icons are based on Elizabeth Arostegui's work</a></p>
+      </div>
+    </div>
+	</div>
+</div>
+
+  </body>
+</html>
