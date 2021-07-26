@@ -152313,7 +152313,7 @@ var node, children;
       
 
       node.name = "index";
-      node.title = "ALIEN 4 Cloud - 3.3.0 - Documentation";
+      node.title = "ALIEN 4 Cloud - 3.4.0 - Documentation";
       node.url = "documentation/3.4.0/index.html";
       node.weight =  0;
       node.root = "../";
